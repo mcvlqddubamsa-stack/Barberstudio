@@ -1,0 +1,289 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BARBER STUDIO — Премиальный барбершоп</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#090909;
+  --panel:#141414;
+  --gold:#d8ad70;
+  --text:#f7f5f1;
+  --muted:#b9b5af;
+  --line:#302b25;
+}
+* {box-sizing:border-box}
+html {scroll-behavior:smooth;scroll-padding-top:85px}
+body {
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Manrope,Arial,sans-serif;
+}
+a {color:inherit;text-decoration:none}
+button,input,select {font:inherit}
+.wrap {width:min(1120px,calc(100% - 40px));margin:auto}
+header {
+  min-height:78px;display:flex;align-items:center;
+  justify-content:space-between;gap:20px;
+  border-bottom:1px solid #ffffff12;
+}
+.logo {font-weight:800;letter-spacing:4px;font-size:18px}
+.logo span {display:block;color:var(--gold);font-size:9px;text-align:center;letter-spacing:5px}
+nav {display:flex;gap:24px;font-size:12px;color:#ddd}
+nav a:hover {color:var(--gold)}
+.btn {
+  display:inline-block;border:1px solid var(--gold);
+  padding:13px 20px;border-radius:7px;
+  color:var(--gold);font-size:12px;font-weight:700;
+  background:transparent;cursor:pointer;transition:.25s;
+}
+.btn.gold {background:var(--gold);color:#17110a}
+.btn:hover {transform:translateY(-2px);filter:brightness(1.1)}
+.hero {
+  min-height:490px;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:30px;
+}
+.eyebrow {color:var(--gold);font-size:10px;letter-spacing:4px;margin-bottom:17px}
+h1 {font-size:clamp(38px,5vw,62px);line-height:1.05;letter-spacing:-2px;margin:0 0 22px}
+h1 span {display:block;color:var(--gold)}
+.lead {font-size:14px;line-height:1.9;color:var(--muted);max-width:440px}
+.hero .btn {margin-top:15px}
+.hero-img {
+  width:100%;height:400px;object-fit:cover;
+  border-radius:5px;filter:brightness(.8);
+  mask-image:linear-gradient(to right,transparent,#000 15%,#000 90%,transparent);
+}
+.perks {display:flex;gap:22px;margin-top:30px;flex-wrap:wrap}
+.perks div {font-size:10px;color:#ddd;line-height:1.6}
+.perks b {color:var(--gold);font-size:20px;margin-right:7px}
+section {padding:60px 0;border-top:1px solid #ffffff0c}
+.heading {display:flex;justify-content:space-between;align-items:end;margin-bottom:28px}
+h2 {font-size:30px;margin:0;letter-spacing:-1px}
+.services {display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.card {
+  background:linear-gradient(145deg,#171614,#0d0d0d);
+  border:1px solid var(--line);border-radius:9px;overflow:hidden;
+  transition:.25s;
+}
+.card:hover {transform:translateY(-5px);border-color:var(--gold)}
+.card img {width:100%;height:145px;object-fit:cover;display:block}
+.card-body {padding:16px}
+.card h3 {font-size:14px;margin:0 0 10px}
+.card p {font-size:11px;color:var(--muted);line-height:1.7;min-height:38px}
+.price {font-weight:800;font-size:16px;color:var(--gold)}
+.price small {font-size:10px;color:#ddd}
+.pricing {display:grid;grid-template-columns:.7fr 1.3fr;gap:50px}
+.pricing p {font-size:13px;line-height:1.8;color:var(--muted)}
+.price-list {display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+.price-row {
+  display:flex;justify-content:space-between;gap:12px;
+  padding:15px 0;border-bottom:1px solid var(--line);font-size:11px;
+}
+.price-row span:last-child {white-space:nowrap;color:var(--gold);font-weight:700}
+.gallery {display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.gallery img {width:100%;height:180px;object-fit:cover;border-radius:7px;transition:.25s}
+.gallery img:hover {transform:scale(1.03)}
+.visit {background:linear-gradient(120deg,#17130f,#090909)}
+.visit-grid {display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.visit h2 {font-size:34px;line-height:1.2}
+.visit-copy {color:var(--muted);font-size:13px;line-height:1.9}
+.visit-copy li {margin:10px 0}
+form {background:#0b0b0b;border:1px solid #51412d;border-radius:12px;padding:24px}
+form label {display:block;font-size:11px;margin-bottom:7px}
+form input,form select {
+  width:100%;padding:13px;margin-bottom:16px;
+  border:1px solid #38332c;border-radius:6px;
+  background:#141414;color:white;outline:none;
+}
+form input:focus,form select:focus {border-color:var(--gold)}
+form .btn {width:100%}
+.note {font-size:10px;color:#928b80;line-height:1.7}
+#success {display:none;color:var(--gold);font-size:12px;line-height:1.7}
+footer {padding:30px 0;display:flex;justify-content:space-between;gap:20px;align-items:center;color:#aaa;font-size:10px}
+@media(max-width:800px) {
+  nav {gap:12px}
+  nav a {font-size:10px}
+  .hero {grid-template-columns:1fr;padding-top:45px;gap:15px}
+  .hero-img {height:300px}
+  .services {grid-template-columns:repeat(2,1fr)}
+  .pricing {grid-template-columns:1fr;gap:20px}
+  .gallery {grid-template-columns:repeat(3,1fr)}
+  .gallery img {height:150px}
+  .visit-grid {grid-template-columns:1fr;gap:25px}
+}
+@media(max-width:520px) {
+  .wrap {width:calc(100% - 28px)}
+  header {min-height:68px}
+  nav {gap:12px}
+  nav a:nth-child(2),nav a:nth-child(4) {display:none}
+  header>.btn {display:none}
+  .hero {padding-top:35px}
+  h1 {font-size:42px}
+  .hero-img {height:250px}
+  section {padding:42px 0}
+  h2 {font-size:25px}
+  .card img {height:110px}
+  .card-body {padding:11px}
+  .card h3 {font-size:12px}
+  .card p {font-size:10px;min-height:55px}
+  .price-list {grid-template-columns:1fr}
+  .gallery {grid-template-columns:repeat(2,1fr)}
+  .gallery img {height:145px}
+  .visit h2 {font-size:29px}
+  form {padding:17px}
+  footer {flex-wrap:wrap}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap" id="home">
+  <a class="logo" href="#home">♛ BARBER<span>STUDIO</span></a>
+  <nav>
+    <a href="#home">Главная</a>
+    <a href="#services">Услуги</a>
+    <a href="#prices">Цены</a>
+    <a href="#gallery">Галерея</a>
+    <a href="#visit">Выезд</a>
+  </nav>
+  <a class="btn" href="#visit">Записаться</a>
+</header>
+
+<main>
+<section class="hero wrap">
+  <div>
+    <div class="eyebrow">СТИЛЬ · МАСТЕРСТВО · ХАРАКТЕР</div>
+    <h1>ТВОЙ СТИЛЬ.<span>ТВОИ ПРАВИЛА.</span></h1>
+    <p class="lead">Профессиональные стрижки, оформление бороды и премиальный уход. Приедем к вам домой или в офис — без очередей и потери времени.</p>
+    <a class="btn gold" href="#visit">Вызвать барбера →</a>
+    <div class="perks">
+      <div><b>✦</b>Опытные мастера</div>
+      <div><b>◷</b>Удобное время</div>
+      <div><b>♢</b>Премиум уход</div>
+    </div>
+  </div>
+  <img class="hero-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1100&q=85" alt="Атмосфера барбершопа">
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="heading"><div><div class="eyebrow">ЧТО МЫ ДЕЛАЕМ</div><h2>НАШИ УСЛУГИ</h2></div></div>
+    <div class="services">
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=80" alt="Мужская стрижка">
+        <div class="card-body"><h3>Мужская стрижка</h3><p>Классика, фейд, кроп и современные формы.</p><div class="price"><small>от </small>1 500 ₽</div></div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=600&q=80" alt="Оформление бороды">
+        <div class="card-body"><h3>Оформление бороды</h3><p>Коррекция формы и аккуратные контуры.</p><div class="price"><small>от </small>1 000 ₽</div></div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" alt="Комплекс">
+        <div class="card-body"><h3>Стрижка + борода</h3><p>Полное обновление образа за один визит.</p><div class="price"><small>от </small>2 200 ₽</div></div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1621607512214-68297480165e?auto=format&fit=crop&w=600&q=80" alt="Уход">
+        <div class="card-body"><h3>Премиум-уход</h3><p>Очищение, уход за волосами и кожей.</p><div class="price"><small>от </small>800 ₽</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="prices">
+  <div class="wrap pricing">
+    <div><div class="eyebrow">ПРОЗРАЧНАЯ СТОИМОСТЬ</div><h2>ПРАЙС-ЛИСТ</h2><p>Качественная работа, внимание к деталям и никаких скрытых доплат.</p><a class="btn" href="#visit">Записаться →</a></div>
+    <div class="price-list">
+      <div class="price-row"><span>Мужская стрижка</span><span>1 500 ₽</span></div>
+      <div class="price-row"><span>Камуфляж седины</span><span>1 500 ₽</span></div>
+      <div class="price-row"><span>Оформление бороды</span><span>1 000 ₽</span></div>
+      <div class="price-row"><span>Уход за волосами</span><span>800 ₽</span></div>
+      <div class="price-row"><span>Стрижка + борода</span><span>2 200 ₽</span></div>
+      <div class="price-row"><span>Маска для лица</span><span>600 ₽</span></div>
+      <div class="price-row"><span>Детская стрижка</span><span>1 000 ₽</span></div>
+      <div class="price-row"><span>Стрижка машинкой</span><span>1 000 ₽</span></div>
+      <div class="price-row"><span>Коррекция бороды</span><span>800 ₽</span></div>
+      <div class="price-row"><span>Бритьё опасной бритвой</span><span>1 200 ₽</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="heading"><div><div class="eyebrow">АТМОСФЕРА И РЕЗУЛЬТАТ</div><h2>НАШИ РАБОТЫ</h2></div></div>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=500&q=80" alt="Работа барбера 1">
+      <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=500&q=80" alt="Работа барбера 2">
+      <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?auto=format&fit=crop&w=500&q=80" alt="Работа барбера 3">
+      <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=500&q=80" alt="Интерьер">
+      <img src="https://images.unsplash.com/photo-1521490458009-3a7b3b6f2b8b?auto=format&fit=crop&w=500&q=80" alt="Инструменты">
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <div class="eyebrow">БАРБЕР ПРИЕДЕТ К ВАМ</div>
+      <h2>ЗАПИШИТЕСЬ<br>НА ВЫЕЗД</h2>
+      <p class="visit-copy">Заполните форму — мы свяжемся с вами, уточним детали и согласуем удобное время.</p>
+      <ul class="visit-copy">
+        <li>Выезд по городу и области</li>
+        <li>Удобное время, включая выходные</li>
+        <li>Профессиональные инструменты</li>
+        <li>Внимание к вашему стилю</li>
+      </ul>
+    </div>
+    <form id="requestForm">
+      <label for="name">Ваше имя</label>
+      <input id="name" name="name" placeholder="Как к вам обращаться?" required>
+      <label for="phone">Телефон</label>
+      <input id="phone" name="phone" type="tel" placeholder="+7 (___) ___-__-__" required>
+      <label for="service">Выберите услугу</label>
+      <select id="service" name="service" required>
+        <option value="">Выберите услугу</option>
+        <option>Мужская стрижка — 1 500 ₽</option>
+        <option>Оформление бороды — 1 000 ₽</option>
+        <option>Стрижка + борода — 2 200 ₽</option>
+        <option>Премиум-уход — 800 ₽</option>
+        <option>Другая услуга</option>
+      </select>
+      <label for="time">Удобное время</label>
+      <select id="time" name="time" required>
+        <option value="">Выберите время</option>
+        <option>Утро, 09:00–12:00</option>
+        <option>День, 12:00–17:00</option>
+        <option>Вечер, 17:00–21:00</option>
+        <option>Обсудить по телефону</option>
+      </select>
+      <label for="address">Адрес выезда</label>
+      <input id="address" name="address" placeholder="Район или адрес">
+      <button class="btn gold" type="submit">Оставить заявку →</button>
+      <p class="note">Демо-форма: пока не отправляет данные владельцу сайта. Для реальных заявок нужно подключить Telegram, почту или CRM.</p>
+      <div id="success" role="status"></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <a class="logo" href="#home">♛ BARBER<span>STUDIO</span></a>
+  <span>© 2026 BARBER STUDIO</span>
+  <a href="#home">Наверх ↑</a>
+</footer>
+
+<script>
+const form = document.getElementById('requestForm');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  if (!form.reportValidity()) return;
+  const name = document.getElementById('name').value.trim();
+  const success = document.getElementById('success');
+  success.style.display = 'block';
+  success.textContent = 'Спасибо, ' + name + '! Форма работает в демо-режиме. Подключите отправку заявок перед запуском.';
+});
+</script>
+</body>
+  </html>
+  
